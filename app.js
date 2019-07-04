@@ -3,7 +3,7 @@ const app = express()
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-const methodOverride = requier('method-override')
+const methodOverride = require('method-override')
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -23,7 +23,7 @@ db.once('open', () => {
 })
 
 app.use('/', (req, res) => {
-    res.render('index')
+    res.render('index2')
 })
 
 app.listen(3000, () => {

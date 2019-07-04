@@ -3,6 +3,11 @@ html, body {
     font-family: Meiryo, 微軟正黑體,'Microsoft JhengHei',sans-serif;
 }
 
+body {
+  position: relative;
+  top: 66px;
+}
+
 img {
   width: 100%;
   padding: 0;
@@ -67,4 +72,18 @@ img {
   display: flex;
   align-items: center;
   height: 17rem;
+}
+
+/* index */
+.panel {
+  text-align: center;
+}
+
+.panel .panel-title {
+  font-size: 2rem;
+}
+
+.panel .panel-amount {
+  font-size: 5rem;
+  color: red;
 }
