@@ -1,0 +1,70 @@
+/* init setting */
+html, body {
+    font-family: Meiryo, 微軟正黑體,'Microsoft JhengHei',sans-serif;
+}
+
+img {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* header */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.navbar img {
+  width: 50px;
+  height: 50px;
+}
+
+.cover {
+  background: black;
+}
+
+.parallax-wrapper {
+  overflow-y: hidden;
+}
+
+.parallax {
+  background-image: url('https://burst.shopifycdn.com/photos/bills-and-receipts.jpg?width=925&format=pjpg&exif=1&iptc=1 1x, https://burst.shopifycdn.com/photos/bills-and-receipts.jpg?width=1850&format=pjpg&exif=1&iptc=1 2x');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+/* Only for the look */
+.parallax {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.parallax > p {
+  z-index: 2;
+}
+
+.overlay {
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.advertise-card {
+  border: none;
+}
+
+.img-wrapper {
+  display: flex;
+  align-items: center;
+  height: 17rem;
+}
