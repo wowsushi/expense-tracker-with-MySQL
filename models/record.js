@@ -11,7 +11,7 @@ RecordSchema = new Schema({
     required: true
   },
   date: {
-    type: Date,
+    type: Schema.Types.Date,
     default: Date.now()
   },
   amount: {
@@ -22,7 +22,7 @@ RecordSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
     index: true,
-    required: true
+    // required: true
   }
 })
 

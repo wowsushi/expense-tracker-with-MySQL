@@ -16,7 +16,9 @@
     </select>
 
     <select name="months" class="form-control col-md-3 mr-3">
-      <option value="house" selected>居家物業</option>
+      {{#each categories}}
+        <option value="{{this.category}}">{{this.category}}</option>
+      {{/each}}
     </select>
 
   </div>
@@ -30,24 +32,33 @@
    <a href="/records/new" class="btn btn-warning btn-lg mb-3 col-sm-6 ">新增一筆支出</a>
   </div>
 
-  <ul class="list-group col-sm-6 mx-auto">
-    {{!-- {{#each records}} --}}
+  <ul class="list-group  mx-auto">
+    {{#each records}}
 
-    <div class="col-auto mr-auto">
-      <h4 style="display: inline;">{{{this.name}}}</h4>
-    </div>
+    <li class="list-group-item col-sm-6 mx-auto">
+      <div class="row d-flex align-items-center">
+        <div class="col-sm-2">
+          <i class="{{this.icon}} h1 mx-3"></i>
+        </div>
 
-    <li class="list-group-item">
-      <div class="row">
-        <div class="col-auto">
-          <a href="/records/{{{this.id}}}/edit" class="btn btn-success">Edit</a>
+        <div class="col-sm-4 mr-auto">
+          <h4>{{this.name}}</h4>
+          <h4>{{this.formattedDate}}</h4>
+        </div>
+
+        <div class="col-sm-2 mr-auto">
+          <h4>{{this.amount}}</h4>
+        </div>
+
+        <div class="col-sm-4 mx-auto">
+          <a href="/records/{{{this.id}}}/edit" class="btn btn-success">編輯</a>
           <form action="/records/{{{this.id}}}/delete?_method=DELETE" method="POST" style="display: inline;">
-            <button type="submit" class="btn btn-danger">Delete</button>
+            <button type="submit" class="btn btn-danger">刪除</button>
           </form>
         </div>
       </div>
     </li>
-    {{!-- {{/each}} --}}
+    {{/each}}
   </ul>
 
  </div>

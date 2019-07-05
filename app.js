@@ -22,9 +22,7 @@ db.once('open', () => {
     console.log('db connected!')
 })
 
-app.use('/', (req, res) => {
-    res.render('index2')
-})
+app.use('/', require('./routes/index'))
 
 app.listen(3000, () => {
     console.log(`Express is listening on http://localhost:3000`)
