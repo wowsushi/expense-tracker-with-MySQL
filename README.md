@@ -14,19 +14,24 @@
 $ git clone https://github.com/wowsushi/expense-tracker.git
 $ git cd expense-tracker
 ```
+
 2. 安裝相依套件
 ```
 $ npm install
 ```
+
 3. 建立種子檔案
 ```
 $ npm run seeder
 ```
+
 4. 設定.env檔，請前往[facebooks for developers](https://developers.facebook.com/)獲取必要數據
-在跟目錄建立檔案**.env**，設定以下參數: 
+在跟目錄建立檔案`.env`，設定以下參數: 
+```
 FACEBOOK_ID= {你的Facebook ID}
 FACEBOOK_SECRET= {你的Facebook secret}
 FACEBOOK_CALLBACK=http://localhost:3000/auth/facebook/callback
+```
 
 5. 執行程式 
 ```
@@ -47,8 +52,8 @@ db connected!
 + 支援Facebook登錄
 
 ## Demo
-![demo1](https://github.com/wowsushi/expense-tracker/blob/master/public/imgs/demo1.png?raw=true)
-![demo2](https://github.com/wowsushi/expense-tracker/blob/master/public/imgs/demo2.png?raw=true)
+![demo1](https://github.com/wowsushi/expense-tracker/blob/master/public/imgs/demo1.PNG?raw=true)
+![demo2](https://github.com/wowsushi/expense-tracker/blob/master/public/imgs/demo2.PNG?raw=true)
 
 
 ## 作者
