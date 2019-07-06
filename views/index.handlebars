@@ -3,24 +3,15 @@
     <div class="form-row justify-content-center">
       <select name="selectedMonth" class="form-control col-md-3 mr-3">
         <option value="all">全部月份</option>
-        <option value="01" {{isSelected selectedMonth "01"}}>一月</option>
-        <option value="02" {{isSelected selectedMonth "02"}}>二月</option>
-        <option value="03" {{isSelected selectedMonth "03"}}>三月</option>
-        <option value="04" {{isSelected selectedMonth "04"}}>四月</option>
-        <option value="05" {{isSelected selectedMonth "05"}}>五月</option>
-        <option value="06" {{isSelected selectedMonth "06"}}>六月</option>
-        <option value="07" {{isSelected selectedMonth "07"}}>七月</option>
-        <option value="08" {{isSelected selectedMonth "08"}}>八月</option>
-        <option value="09" {{isSelected selectedMonth "09"}}>九月</option>
-        <option value="10" {{isSelected selectedMonth "10"}}>十月</option>
-        <option value="11" {{isSelected selectedMonth "11"}}>十一月</option>
-        <option value="12" {{isSelected selectedMonth "12"}}>十二月</option>
+        {{#each months}}
+          <option value="{{this.value}}" {{isSelected ../selectedMonth this.value}}>{{this.month_ch}}</option>
+        {{/each}}
       </select>
 
       <select name="selectedCategory" class="form-control col-md-3 mr-3">
         <option value="all">全部類別</option>
         {{#each categories}}
-          <option value="{{this.category}}" {{isSelected ../selectedCategory this.category}}>{{this.category}}</option>
+          <option value="{{this.category_ch}}" {{isSelected ../selectedCategory this.category_ch}}>{{this.category_ch}}</option>
         {{/each}}
       </select>
 

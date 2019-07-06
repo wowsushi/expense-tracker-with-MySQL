@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 
-const recordList = require('./record.json').records
-const userList = require('./user.json').users
+const recordList = require('../../data/record.json').records
+const userList = require('../../data/user.json').users
 
 const Record = require('../record.js')
 const User = require('../user.js')

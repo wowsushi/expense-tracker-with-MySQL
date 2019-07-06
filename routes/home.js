@@ -1,30 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../models/record')
-
-
-const categories = {
-  家居物業: {
-    category: "家居物業",
-    icon: "fas fa-home"
-  },
-  交通出行: {
-    category: "交通出行",
-    icon: "fas fa-shuttle-van"
-  },
-  休閒娛樂: {
-    category: "休閒娛樂",
-    icon: "fas fa-grin-beam"
-  },
-  餐飲食品: {
-    category: "餐飲食品",
-    icon: "fas fa-utensils"
-  },
-  其他: {
-    category: "其他",
-    icon: "fas fa-pen"
-  }
-}
+const categories = require('../data/categories.json').categories
+const months = require('../data/months.json').months
 
 router.get('/', (req, res) => {
   let totalAmount = 0
@@ -35,7 +13,7 @@ router.get('/', (req, res) => {
         record.formattedDate = `${record.date.getFullYear()}/${(record.date.getMonth() + 1)}/${record.date.getDate()}`
         totalAmount += record.amount
       })
-      res.render('index', { records, categories, totalAmount })
+      res.render('index', { records, categories, months, totalAmount })
     })
   } else {
     res.render('landing')
@@ -47,7 +25,7 @@ router.post('/', (req, res) => {
   let totalAmount = 0
   const filterMonth = (selectedMonth === 'all')? {} : {date:{$gte: `2019-${+selectedMonth}-01`, $lte: `2019-${+selectedMonth}-31`}}
   const filterCategory = (selectedCategory ==='all')? {} : {category: selectedCategory}
-  
+
   Record
     .find({userId: req.user._id})
     .find(filterMonth)
@@ -58,7 +36,8 @@ router.post('/', (req, res) => {
         record.formattedDate = `${record.date.getFullYear()}/${(record.date.getMonth() + 1)}/${record.date.getDate()}`
         totalAmount += record.amount
       }
-      res.render('index', {records, categories, selectedMonth, selectedCategory, totalAmount})
+      res.render('index', {records, categories, months, selectedMonth, selectedCategory, totalAmount})
+    })
   })
 })
 

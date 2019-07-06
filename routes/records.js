@@ -3,31 +3,10 @@ const router = express.Router()
 
 const Record = require('../models/record.js')
 const { authenticated } = require('../config/auth.js')
-
-const categories = {
-  家居物業: {
-    category: "家居物業",
-    icon: "fas fa-home"
-  },
-  交通出行: {
-    category: "交通出行",
-    icon: "fas fa-shuttle-van"
-  },
-  休閒娛樂: {
-    category: "休閒娛樂",
-    icon: "fas fa-grin-beam"
-  },
-  餐飲食品: {
-    category: "餐飲食品",
-    icon: "fas fa-utensils"
-  },
-  其他: {
-    category: "其他",
-    icon: "fas fa-pen"
-  }
-}
+const categories = require('../data/categories.json').categories
 
 router.get('/new', authenticated, (req, res) => {
+  console.log(categories)
   res.render('new', { categories })
 })
 
