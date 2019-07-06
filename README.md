@@ -14,27 +14,34 @@
 $ git clone https://github.com/wowsushi/expense-tracker.git
 $ git cd expense-tracker
 ```
+
 2. 安裝相依套件
 ```
 $ npm install
 ```
+
 3. 建立種子檔案
 ```
 $ npm run seeder
 ```
+
 4. 設定.env檔，請前往[facebooks for developers](https://developers.facebook.com/)獲取必要數據
-在跟目錄建立檔案**.env**，設定以下參數: 
+在跟目錄建立檔案`.env`，設定以下參數:
+```
 FACEBOOK_ID= {你的Facebook ID}
 FACEBOOK_SECRET= {你的Facebook secret}
 FACEBOOK_CALLBACK=http://localhost:3000/auth/facebook/callback
+```
 
 5. 執行程式 
 ```
 $ npm run dev
 ```
 若是看到以下訊息，就代表成功啟動，請點擊下方網址前往瀏覽
+```
 Express is listening on http://localhost:3000
 db connected!
+```
 
 6. 測試帳號如下，登入後即可查看支出
 ```
