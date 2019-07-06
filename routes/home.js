@@ -38,7 +38,7 @@ router.post('/', (req, res) => {
       }
       res.render('index', {records, categories, months, selectedMonth, selectedCategory, totalAmount})
     })
-  })
 })
+
 
 module.exports = router
