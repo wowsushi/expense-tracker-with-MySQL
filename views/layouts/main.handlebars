@@ -22,7 +22,8 @@
       <div>
         {{#if isAuthenticated}}
         <div class="d-flex align-items-center">
-          <p class="mr-3 h6">歡迎回來 {{user.email}}</p>
+          <p class="mr-3 h6">歡迎回來 {{user.name}}</p>
+          <a href="/records/budget" class="btn btn-primary mr-3">查看每月預算</a>
           <a href="/users/logout" class="btn btn-primary">Logout</a>
         </div>
         {{else}}

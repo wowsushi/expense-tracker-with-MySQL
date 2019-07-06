@@ -24,8 +24,10 @@ db.once('open', () => {
         if (err) throw err
 
         User.create({
+          name: user.name,
           email: user.email,
-          password: hash
+          password: hash,
+          monthlyBudget: user.monthlyBudget
         })
         .then(user => {
           const records = index ? recordList.slice(6, 10) : recordList.slice(0, 5)

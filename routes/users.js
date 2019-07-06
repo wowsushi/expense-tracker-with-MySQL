@@ -11,10 +11,10 @@ router.get('/register', (req, res) => {
 })
 
 router.post('/register', (req, res) => { 
-  const { email, name, password, password2 } = req.body
+  const { email, name, password, password2, budget } = req.body
   const errors = []
 
-  if (!email || !name || !password || !password2) {
+  if (!email || !name || !password || !password2 || !budget) {
     errors.push({ message: `全部格子都是必填唷`})
   }
 
@@ -26,19 +26,25 @@ router.post('/register', (req, res) => {
     errors.push({ message: `確認密碼不一致`})
   }
 
+  if (isNaN(budget)) {
+    errors.push({ message: `每月預算必須是數字`})
+  }
+
   if (errors.length > 0) {
     res.render('register', {
       errors,
       email,
       name,
       password,
-      password2
+      password2,
+      budget
     })
   } else {
     const newUser = new User ({
       name: name,
       email: email,
-      password: password
+      password: password,
+      monthlyBudget: budget
     })
 
     bcrypt.genSalt(10, (err, salt) => {
@@ -63,6 +69,11 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', (req, res, next) => {
+  const { email, password } = req.body
+  if (!email || !password ) {
+    req.flash('error_msg', `全部格子都是必填唷`)
+  }
+
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/users/login'

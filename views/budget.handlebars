@@ -1,0 +1,73 @@
+ <div class="col-md-10 col-12 mx-auto">
+   <form action="/records/budget" method="POST">
+    <div class="form-row justify-content-center">
+      <select name="selectedMonth" class="form-control col-md-3 mr-3">
+        <option value="all">全部月份</option>
+        {{#each months}}
+          <option value="{{this.value}}" {{isSelected ../selectedMonth this.value}}>{{this.month_ch}}</option>
+        {{/each}}
+      </select>
+
+      <button class="btn btn-primary">篩選</button>
+   </form>
+
+  </div>
+
+  <div class="d-flex justify-content-around my-3">
+    <div class="panel d-flex flex-column justify-content-center">
+      <span class="panel-title mt-3">當月預算</span>
+      <p class="panel-amount">{{budget}}</p>
+    </div>
+    <div class="panel d-flex flex-column justify-content-center">
+      <span class="panel-title mt-3">當月花費</span>
+      <p class="panel-amount">{{totalAmount}}</p>
+    </div>
+    <div class="panel d-flex flex-column justify-content-center">
+      <span class="panel-title mt-3">當月餘額</span>
+      <p class="panel-amount">{{balance}}</p>
+    </div>
+
+  </div>
+
+  <div class="d-flex justify-content-center">
+   <a href="/records/new" class="btn btn-warning btn-lg mb-3 col-sm-6 ">新增一筆支出</a>
+  </div>
+
+  <ul class="list-group  mx-auto">
+    {{#each records}}
+
+    <li class="list-group-item col-sm-6 mx-auto">
+      <div class="row d-flex align-items-center">
+        <div class="col-sm-2">
+          <i class="{{this.icon}} h1 mx-3"></i>
+        </div>
+
+        <div class="col-sm-4 mr-auto">
+          <h4>{{this.name}}</h4>
+          <h4>{{this.formattedDate}}</h4>
+        </div>
+
+        <div class="col-sm-2 mr-auto">
+          <h4>{{this.amount}}</h4>
+        </div>
+
+        <div class="col-sm-4 mx-auto">
+          <a href="/records/{{{this.id}}}/edit" class="btn btn-success">編輯</a>
+          <form action="/records/{{{this.id}}}/delete?_method=DELETE" method="POST" style="display: inline;">
+            <button type="submit" class="btn btn-danger">刪除</button>
+          </form>
+        </div>
+      </div>
+    </li>
+    {{/each}}
+
+  </ul>
+  {{#ifEquals records.length 0}}
+  <div class="d-flex justify-content-center mt-5">
+    <i class="fas fa-money-bill-alt h3 pr-3" style="color:rgb(88, 83, 83);"></i>
+    <p class="h3" style="color:rgb(88, 83, 83);">尚未有任何消費</p>
+  </div>
+  {{/ifEquals}}
+
+ </div>
+

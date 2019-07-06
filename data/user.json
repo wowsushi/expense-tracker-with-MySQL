@@ -1,12 +1,16 @@
 {
   "users": [
     {
+      "name": "Betty",
       "email": "user1@example.com",
-      "password": "12345678"
+      "password": "12345678",
+      "monthlyBudget": "5000"
     },
     {
+      "name": "Alice",
       "email": "user2@example.com",
-      "password": "12345678"
+      "password": "12345678",
+      "monthlyBudget": "5000"
     }
   ]
 }
