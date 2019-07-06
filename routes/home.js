@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
     Record.find({userId: req.user._id}).exec((err, records) => {
       records.forEach(record => {
         record.icon = categories[record.category].icon
-        record.formattedDate = `${record.date.getFullYear()}/${record.date.getMonth()}/${record.date.getDate()}`
+        record.formattedDate = `${record.date.getFullYear()}/${(record.date.getMonth() + 1)}/${record.date.getDate()}`
       })
       res.render('index', { records, categories })
     })

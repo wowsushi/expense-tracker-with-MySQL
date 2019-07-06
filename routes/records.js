@@ -50,7 +50,7 @@ router.post('/', (req, res) => {
 router.get('/:id/edit', authenticated, (req, res) => {
   Record.findOne({_id: req.params.id, userId: req.user._id}, (err, record) => {
     if (err) return err
-    const formattedDate = `${record.date.getFullYear()}-${record.date.getMonth().toString().padStart(2, '0')}-${record.date.getDate().toString().padStart(2, '0')}`
+    const formattedDate = `${record.date.getFullYear()}-${(record.date.getMonth() + 1).toString().padStart(2, '0')}-${record.date.getDate().toString().padStart(2, '0')}`
     res.render('edit', { record, categories, formattedDate })
   })
 })
