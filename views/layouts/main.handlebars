@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>荷包君</title>
+  <title>荷包軍</title>
   <link rel="stylesheet" href="/stylesheets/stylesheet.css">
   <link rel="stylesheet" href="/stylesheets/bootstrap.css">
   <link rel="stylesheet" href="/stylesheets/main.css">
@@ -16,7 +16,7 @@
       <div>
         <a class="nav-brand h3" href="/">
            <img src="/imgs/logo-icon.png" alt="回首頁" title="回首頁">
-           荷包君
+           荷包軍
         </a>
       </div>
       <div>
@@ -24,10 +24,10 @@
         <div class="d-flex align-items-center">
           <p class="mr-3 h6">歡迎回來 {{user.name}}</p>
           <a href="/records/budget" class="btn btn-primary mr-3">查看每月預算</a>
-          <a href="/users/logout" class="btn btn-primary">Logout</a>
+          <a href="/users/logout" class="btn btn-primary">登出</a>
         </div>
         {{else}}
-        <a href="/users/login" class="btn btn-primary">Login</a>
+        <a href="/users/login" class="btn btn-primary">登入</a>
         {{/if}}
       </div>               
     </nav>
