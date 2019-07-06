@@ -57,7 +57,7 @@ db connected!
 
 ## Demo
 ![demo1](https://github.com/wowsushi/expense-tracker/blob/master/public/imgs/demo1.PNG?raw=true)
-![demo3](https://github.com/wowsushi/expense-tracker/blob/master/public/imgs/demo.PNG?raw=true)
+![demo3](https://github.com/wowsushi/expense-tracker/blob/master/public/imgs/demo3.PNG?raw=true)
 
 
 ## 作者
