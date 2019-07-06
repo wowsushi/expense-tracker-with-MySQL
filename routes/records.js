@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const Record = require('../models/record.js')
+const { authenticated } = require('../config/auth.js')
 
 const categories = {
   家居物業: {
@@ -26,7 +27,7 @@ const categories = {
   }
 }
 
-router.get('/new', (req, res) => {
+router.get('/new', authenticated, (req, res) => {
   res.render('new', { categories })
 })
 
@@ -36,7 +37,7 @@ router.post('/', (req, res) => {
     category: req.body.category, 
     date: req.body.date,
     amount: req.body.amount,
-    // userId: req.user._id
+    userId: req.user._id
   })
 
   record.save( err => {
@@ -46,8 +47,8 @@ router.post('/', (req, res) => {
   
 })
 
-router.get('/:id/edit', (req, res) => {
-  Record.findOne({_id: req.params.id}, (err, record) => {
+router.get('/:id/edit', authenticated, (req, res) => {
+  Record.findOne({_id: req.params.id, userId: req.user._id}, (err, record) => {
     if (err) return err
     const formattedDate = `${record.date.getFullYear()}-${record.date.getMonth().toString().padStart(2, '0')}-${record.date.getDate().toString().padStart(2, '0')}`
     res.render('edit', { record, categories, formattedDate })
@@ -55,7 +56,7 @@ router.get('/:id/edit', (req, res) => {
 })
 
 router.put('/:id/edit', (req, res) => {
-  Record.findOne({_id: req.params.id}, (err, record) => {
+  Record.findOne({_id: req.params.id, userId: req.user._id}, (err, record) => {
     if (err) return err
     record.name = req.body.name
     record.category = req.body.category
@@ -70,7 +71,7 @@ router.put('/:id/edit', (req, res) => {
 })
 
 router.delete('/:id/delete', (req, res) => {
-  Record.findOne({_id: req.params.id}, (err, record) => {
+  Record.findOne({_id: req.params.id, userId: req.user._id}, (err, record) => {
     if (err) return err
     record.remove( err => {
       if (err) return err

@@ -33,6 +33,8 @@ img {
 }
 
 .parallax-wrapper {
+  position: relative;
+  top: -66px;
   overflow-y: hidden;
 }
 

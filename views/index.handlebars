@@ -1,34 +1,67 @@
-  <div class="container">
-    <div class="row">
-      <div class="col-sm my-3">
-        <div class="card advertise-card">
-          <div class="img-wrapper">
-            <img src="/imgs/promotion-1.jpg" alt="支出控管" title="支出控管" class="card-img-top"> 
-          </div>
-          <p class="h5 mt-5 card-content">顯示總金額，每月支出一目瞭然！守護荷包君你我有責。</p>
-        </div>     
-      </div>
+ <div class="col-md-10 col-12 mx-auto">
+  <div class="form-row justify-content-center">
+    <select class="form-control col-md-3 mr-3">
+      <option value="all" selected>全部月份</option>
+      <option value="jan">一月</option>
+      <option value="feb">二月</option>
+      <option value="mar">三月</option>
+      <option value="apr">四月</option>
+      <option value="may">五月</option>
+      <option value="jun">六月</option>
+      <option value="july">七月</option>
+      <option value="aug">八月</option>
+      <option value="sep">九月</option>
+      <option value="oct">十月</option>
+      <option value="nov">十一月</option>
+      <option value="dec">十二月</option>
+    </select>
 
-      <div class="col-sm my-3">
-        <div class="card advertise-card">
-          <div class="img-wrapper">
-            <img src="/imgs/promotion-2.jpg" alt="預算控管" title="預算控管" class="card-img-top">
-          </div>
-          <p class="h5 mt-5 card-content">訂出每月預算，控管支出，緊守荷包君完美Ｓ曲線。</p>
-        </div>       
-      </div>
-      
-      <div class="col-sm my-3">
-        <div class="card advertise-card">
-          <div class="img-wrapper">
-            <img src="/imgs/promotion-3.png" alt="多樣分類" title="多樣分類" class="card-img-top">
-          </div>
-          <p class="h5 mt-5 card-content">多樣化分類標示，食衣住行通通有，抓出讓荷包君＂消風＂元兇。</p> 
-        </div>    
-      </div>
-    </div>
-    
-    <div class="row">
-      <a href="/users/login" class="btn btn-primary btn-lg mb-3 mt-5 mx-auto" role="button">馬上註冊體驗</a>
-    </div>  
+    <select name="months" class="form-control col-md-3 mr-3">
+      <option value="all" selected>全部類別</option>
+      {{#each categories}}
+        <option value="{{this.category}}">{{this.category}}</option>
+      {{/each}}
+    </select>
+
   </div>
+
+  <div class="panel d-flex flex-column justify-content-center">
+    <span class="panel-title mt-3">總金額</span>
+    <p class="panel-amount">123445</p>
+  </div>
+
+  <div class="d-flex justify-content-center">
+   <a href="/records/new" class="btn btn-warning btn-lg mb-3 col-sm-6 ">新增一筆支出</a>
+  </div>
+
+  <ul class="list-group  mx-auto">
+    {{#each records}}
+
+    <li class="list-group-item col-sm-6 mx-auto">
+      <div class="row d-flex align-items-center">
+        <div class="col-sm-2">
+          <i class="{{this.icon}} h1 mx-3"></i>
+        </div>
+
+        <div class="col-sm-4 mr-auto">
+          <h4>{{this.name}}</h4>
+          <h4>{{this.formattedDate}}</h4>
+        </div>
+
+        <div class="col-sm-2 mr-auto">
+          <h4>{{this.amount}}</h4>
+        </div>
+
+        <div class="col-sm-4 mx-auto">
+          <a href="/records/{{{this.id}}}/edit" class="btn btn-success">編輯</a>
+          <form action="/records/{{{this.id}}}/delete?_method=DELETE" method="POST" style="display: inline;">
+            <button type="submit" class="btn btn-danger">刪除</button>
+          </form>
+        </div>
+      </div>
+    </li>
+    {{/each}}
+  </ul>
+
+ </div>
+

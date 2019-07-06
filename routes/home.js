@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../models/record')
-// const { authenticated } = require('../config/auth')
 
 
 const categories = {
@@ -28,13 +27,17 @@ const categories = {
 }
 
 router.get('/', (req, res) => {
-  Record.find().exec((err, records) => {
-    records.forEach(record => {
-      record.icon = categories[record.category].icon
-      record.formattedDate = `${record.date.getFullYear()}/${record.date.getMonth()}/${record.date.getDate()}`
+  if (req.isAuthenticated()) {
+    Record.find({userId: req.user._id}).exec((err, records) => {
+      records.forEach(record => {
+        record.icon = categories[record.category].icon
+        record.formattedDate = `${record.date.getFullYear()}/${record.date.getMonth()}/${record.date.getDate()}`
+      })
+      res.render('index', { records, categories })
     })
-    res.render('index2', { records, categories })
-  })
+  } else {
+    res.render('landing')
+  }
 })
 
 module.exports = router
