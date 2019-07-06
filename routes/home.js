@@ -27,13 +27,15 @@ const categories = {
 }
 
 router.get('/', (req, res) => {
+  let totalAmount = 0
   if (req.isAuthenticated()) {
     Record.find({userId: req.user._id}).exec((err, records) => {
       records.forEach(record => {
         record.icon = categories[record.category].icon
         record.formattedDate = `${record.date.getFullYear()}/${(record.date.getMonth() + 1)}/${record.date.getDate()}`
+        totalAmount += record.amount
       })
-      res.render('index', { records, categories })
+      res.render('index', { records, categories, totalAmount })
     })
   } else {
     res.render('landing')

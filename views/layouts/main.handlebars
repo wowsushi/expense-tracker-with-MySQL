@@ -21,7 +21,10 @@
       </div>
       <div>
         {{#if isAuthenticated}}
-        <a href="/users/logout" class="btn btn-primary">Logout</a>
+        <div class="d-flex align-items-center">
+          <p class="mr-3 h6">歡迎回來 {{user.email}}</p>
+          <a href="/users/logout" class="btn btn-primary">Logout</a>
+        </div>
         {{else}}
         <a href="/users/login" class="btn btn-primary">Login</a>
         {{/if}}

@@ -19,7 +19,7 @@ img {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 999;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -74,6 +74,7 @@ img {
   display: flex;
   align-items: center;
   height: 17rem;
+  max-width: 380px;
 }
 
 /* index */
@@ -88,4 +89,15 @@ img {
 .panel .panel-amount {
   font-size: 5rem;
   color: red;
+}
+
+@keyframes fadeIn {
+  0% {
+    opicity: 0;
+    top: 0;
+  }
+  100% {
+    opicity: 1;
+    top: -5px;
+  }
 }
