@@ -56,8 +56,8 @@ db connected!
 + 支援Facebook登錄
 
 ## Demo
-![demo1](https://github.com/wowsushi/expense-tracker/blob/master/public/imgs/demo1.png?raw=true)
-![demo3](https://github.com/wowsushi/expense-tracker/blob/master/public/imgs/demo.png?raw=true)
+![demo1](https://github.com/wowsushi/expense-tracker/blob/master/public/imgs/demo1.PNG?raw=true)
+![demo3](https://github.com/wowsushi/expense-tracker/blob/master/public/imgs/demo.PNG?raw=true)
 
 
 ## 作者
