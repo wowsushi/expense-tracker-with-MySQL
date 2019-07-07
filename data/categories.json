@@ -2,23 +2,28 @@
   "categories": {
     "家居物業": {
       "category_ch": "家居物業",
-      "icon": "fas fa-home"
+      "icon": "fas fa-home",
+      "subtotal": "0"
     },
     "交通出行": {
       "category_ch": "交通出行",
-      "icon": "fas fa-shuttle-van"
+      "icon": "fas fa-shuttle-van",
+      "subtotal": "0"
     },
     "休閒娛樂": {
       "category_ch": "休閒娛樂",
-      "icon": "fas fa-grin-beam"
+      "icon": "fas fa-grin-beam",
+      "subtotal": "0"
     },
     "餐飲食品": {
       "category_ch": "餐飲食品",
-      "icon": "fas fa-utensils"
+      "icon": "fas fa-utensils",
+      "subtotal": "0"
     },
     "其他": {
       "category_ch": "其他",
-      "icon": "fas fa-pen"
+      "icon": "fas fa-pen",
+      "subtotal": "0"
     }
   }
 }

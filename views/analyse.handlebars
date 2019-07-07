@@ -1,0 +1,76 @@
+ <div class="col-md-10 col-12 mx-auto">
+   <form action="/analyse" method="POST">
+    <div class="form-row justify-content-center">
+      <select name="selectedMonth" class="form-control col-md-3 mr-3">
+        {{#each months}}
+          <option value="{{this.value}}" {{isSelected ../selectedMonth this.value}}>{{this.month_ch}}</option>
+        {{/each}}
+      </select>
+
+      <button class="btn btn-primary">查看</button>
+   </form>
+
+  </div>
+
+  <div class="d-flex col-sm-8 justify-content-between my-3 mx-auto ">
+    <div class="panel d-flex flex-column justify-content-center">
+      <span class="panel-title-sm mt-3">當月預算</span>
+      <p class="panel-amount-sm">{{budget}}</p>
+    </div>
+    <div class="panel d-flex flex-column justify-content-center">
+      <span class="panel-title-sm mt-3">當月花費</span>
+      <p class="panel-amount-sm">{{totalAmount}}</p>
+    </div>
+    <div class="panel d-flex flex-column justify-content-center">
+      <span class="panel-title-sm mt-3">當月餘額</span>
+      <p class="panel-amount-sm">{{balance}}</p>
+    </div>
+
+  </div>
+
+  
+
+  </ul>
+  {{#ifEquals records.length 0}}
+  <div class="d-flex justify-content-center mt-5">
+    <i class="fas fa-money-bill-alt h3 pr-3" style="color:rgb(88, 83, 83);"></i>
+    <p class="h3" style="color:rgb(88, 83, 83);">尚未有任何消費</p>
+  </div>
+  {{else}}
+  <div class="analyse-chart col-6 mx-auto">
+    <canvas id="analyse-chart-pie"></canvas>
+  </div>
+  {{/ifEquals}}
+
+ </div>
+
+{{!-- chart here --}}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script>
+  var ctx = document.getElementById('analyse-chart-pie').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+          labels: [ '家居物業', '交通出行', '休閒娛樂', '餐飲食品', '其他' ],
+          datasets: [{
+              label: '# of Votes',
+              data: [{{ subtotalList }}],
+              backgroundColor: [
+                  'hsl(347, 100%, 65%)',
+                  'hsl(204, 82%, 65%)',
+                  'hsl(42, 100%, 65%)',
+                  'hsl(125, 40%, 65%)',
+                  'hsl(294, 57%, 65%)',
+              ],
+              hoverBackgroundColor: [
+                  'hsl(347, 100%, 45%)',
+                  'hsl(204, 82%, 45%)',
+                  'hsl(42, 100%, 45%)',
+                  'hsl(125, 40%, 45%)',
+                  'hsl(294, 57%, 45%)',
+              ],
+              borderWidth: 1
+          }]
+      },
+  });
+  </script>

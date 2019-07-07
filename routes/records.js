@@ -7,7 +7,6 @@ const categories = require('../data/categories.json').categories
 const months = require('../data/months.json').months
 
 router.get('/new', authenticated, (req, res) => {
-  console.log(categories)
   res.render('new', { categories })
 })
 
@@ -58,46 +57,6 @@ router.delete('/:id/delete', (req, res) => {
         return res.redirect('/')
     })
   })
-})
-
-router.get('/budget', authenticated, (req, res) => {
-  const budget = req.user.monthlyBudget * 12
-  let { selectedMonth } = req.body
-  let totalAmount = 0
-
-  Record
-    .find({usderId: req.user._id})
-    .exec((err, records) => {
-      for (record of records) {
-        record.icon = categories[record.category].icon
-        record.formattedDate = `${record.date.getFullYear()}/${(record.date.getMonth() + 1)}/${record.date.getDate()}`
-        totalAmount += record.amount
-      }
-      const balance = budget - totalAmount
-      res.render('budget', {records, categories, months, selectedMonth, totalAmount, budget, balance})
-    })
-})
-
-router.post('/budget', (req, res) => {
-  const budget = req.user.monthlyBudget
-  let { selectedMonth } = req.body
-  let totalAmount = 0
-  const filterMonth = (selectedMonth === 'all')? {} : {date:{$gte: `2019-${+selectedMonth}-01`, $lte: `2019-${+selectedMonth}-31`}}
-
-  if (selectedMonth === 'all') budget * 12
-
-  Record
-    .find({usderId: req.user._id})
-    .find(filterMonth)
-    .exec((err, records) => {
-      for (record of records) {
-        record.icon = categories[record.category].icon
-        record.formattedDate = `${record.date.getFullYear()}/${(record.date.getMonth() + 1)}/${record.date.getDate()}`
-        totalAmount += record.amount
-      }
-      const balance = budget - totalAmount
-      res.render('budget', {records, categories, months, selectedMonth, totalAmount, budget, balance})
-    })
 })
 
 module.exports = router

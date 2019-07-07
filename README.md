@@ -12,7 +12,7 @@
 1. 下載專案
 ```
 $ git clone https://github.com/wowsushi/expense-tracker.git
-$ git cd expense-tracker
+$ cd expense-tracker
 ```
 
 2. 安裝相依套件
