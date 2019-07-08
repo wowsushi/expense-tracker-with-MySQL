@@ -4,3 +4,6 @@ window.addEventListener('scroll', e => {
     var coords = (scrolled * 0.8) + 'px'
     parallax.style.transform = 'translateY(' + coords + ')';
 });
+
+AOS.init();
+
