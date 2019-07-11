@@ -59,10 +59,12 @@ db connected!
 + 使用者可以刪除特定的支出
 + 使用者可以編輯特定的支出
 + 使用者可以篩選特定期間及類別的支出
++ 使用者可以查看每月支出分析頁面
 + 使用者可以登陸後瀏覽專屬的記帳本界面
 + 支援Facebook登錄
 
 ## Demo
+[Visit here!](https://limitless-atoll-92986.herokuapp.com/)
 ![sample1](https://github.com/wowsushi/expense-tracker/blob/master/public/imgs/sample1.png?raw=true)
 ![sample2](https://github.com/wowsushi/expense-tracker/blob/master/public/imgs/sample2.png?raw=true)
 ![sample3](https://github.com/wowsushi/expense-tracker/blob/master/public/imgs/sample3.png?raw=true)
