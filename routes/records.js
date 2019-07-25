@@ -1,7 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-const Record = require('../models/record.js')
+const db = require('../models')
+const Record = db.Record
+const User = db.User
+
 const { authenticated } = require('../config/auth.js')
 const categories = require('../data/categories.json').categories
 const months = require('../data/months.json').months
@@ -11,51 +14,57 @@ router.get('/new', authenticated, (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const record = new Record({
+  Record.create({
     name: req.body.name,
-    category: req.body.category, 
+    category: req.body.category,
     date: req.body.date,
     amount: req.body.amount,
-    userId: req.user._id
+    UserId: req.user.id
   })
-
-  record.save( err => {
-    if (err) console.log(err)
-    res.redirect('/')
-  })
-  
+  .then((todo) => { return res.redirect('/') })
+  .catch((error) => { return res.status(422).json(error) })
 })
 
 router.get('/:id/edit', authenticated, (req, res) => {
-  Record.findOne({_id: req.params.id, userId: req.user._id}, (err, record) => {
-    if (err) return err
-    const formattedDate = `${record.date.getFullYear()}-${(record.date.getMonth() + 1).toString().padStart(2, '0')}-${record.date.getDate().toString().padStart(2, '0')}`
-    res.render('edit', { record, categories, formattedDate })
+  User.findByPk(req.user.id)
+  .then(user => {
+    if (!user) throw new Error("user not found");
+
+    return Record.findOne({
+      where: {
+        id: req.params.id,
+        UserId: req.user.id
+      }
+    })
   })
+  .then(record => {
+    const formattedDate = `${record.date.getFullYear()}-${(record.date.getMonth() + 1).toString().padStart(2, '0')}-${record.date.getDate().toString().padStart(2, '0')}`
+    return res.render('edit', { record, categories, formattedDate })
+  })
+  .catch(error => { return res.status(422).json(error) })
 })
 
 router.put('/:id/edit', (req, res) => {
-  Record.findOne({_id: req.params.id, userId: req.user._id}, (err, record) => {
-    if (err) return err
+  Record.findOne({ where: { id: req.params.id, UserId: req.user.id } })
+  .then(record => {
     record.name = req.body.name
     record.category = req.body.category
     record.date = req.body.date
     record.amount = req.body.amount
 
-    record.save( err => {
-      if (err) return err
-        return res.redirect('/')
-    })
+    return record.save()
   })
+  .then(record => { return res.redirect('/')})
+  .catch(error => { return res.status(422).json(error) })
 })
 
 router.delete('/:id/delete', (req, res) => {
-  Record.findOne({_id: req.params.id, userId: req.user._id}, (err, record) => {
-    if (err) return err
-    record.remove( err => {
-      if (err) return err
-        return res.redirect('/')
-    })
+  Record.findOne({ where: { id: req.params.id, UserId: req.user.id } })
+  .then(record => {
+    record.destroy({ where: { id: req.params.id, UserId: req.user.id }
+  })
+  .then(record => { return res.redirect('/') })
+  .catch(error => { return res.status(422).json(error) })
   })
 })
 

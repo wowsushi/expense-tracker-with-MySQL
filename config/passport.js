@@ -1,16 +1,16 @@
 const LocalStrategy = require('passport-local').Strategy
 const FacebookStrategy = require('passport-facebook').Strategy
 
-const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 
-const User = require('../models/user')
+const db = require('../models')
+const User = db.User
 
 module.exports = passport => {
   passport.use(
     new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) => {
       User.findOne({
-        email: email
+        where: { email: email }
       }).then(user => {
         if (!user) {
           return done(null, false, req.flash('error_msg', '輸入的email未註冊'))
@@ -36,13 +36,13 @@ module.exports = passport => {
       profileFields: ['email', 'displayName']
     }, (accessToken, refreshToken, profile, done) => {
       User.findOne({
-        email: profile._json.email
+        where: { email: profile._json.email }
       }).then(user => {
         if (!user) {
           const randomPassword = Math.random().toString(36).slice(-8)
           bcrypt.genSalt(10, (err, salt) =>
             bcrypt.hash(randomPassword, salt, (err, hash) => {
-              const newUser = User({
+              const newUser = new User({
                 name: profile._json.name,
                 email: profile._json.email,
                 password: hash
@@ -65,8 +65,8 @@ module.exports = passport => {
       done(null, user.id)
   })
   passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => {
-      done(err, user)
+    User.findByPk(id).then(user => {
+      done(null, user)
     })
   })
 }
