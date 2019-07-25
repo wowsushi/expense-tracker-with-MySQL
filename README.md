@@ -3,16 +3,15 @@
 
 ## 前置要求
 + [Node.js](https://nodejs.org/en/)
-+ [MongoDB](https://www.mongodb.com/)
 
 
-## 如何使用 ? 
+## 如何使用 ?
 請按照以下步驟進行安裝
 
 1. 下載專案
 ```
-$ git clone https://github.com/wowsushi/expense-tracker.git
-$ cd expense-tracker
+$ git clone https://github.com/wowsushi/expense-tracker-with-MySQL.git
+$ cd expense-tracker-with-MySQL
 ```
 
 2. 安裝相依套件
@@ -22,7 +21,7 @@ $ npm install
 
 3. 建立種子檔案
 ```
-$ npm run seeder
+$ npx sequelize-cli db:seed:all
 ```
 
 4. 設定.env檔，請前往[facebooks for developers](https://developers.facebook.com/)獲取必要數據
@@ -33,7 +32,7 @@ FACEBOOK_SECRET= {你的Facebook secret}
 FACEBOOK_CALLBACK=http://localhost:3000/auth/facebook/callback
 ```
 
-5. 執行程式 
+5. 執行程式
 ```
 $ npm run dev
 ```
@@ -45,7 +44,7 @@ db connected!
 
 6. 測試帳號如下，登入後即可查看支出
 ```
-第一組: 
+第一組:
 帳號: user1@example.com
 密碼: 12345678
 
